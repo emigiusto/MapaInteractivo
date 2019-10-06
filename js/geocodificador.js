@@ -8,11 +8,40 @@ geocodificadorModulo = (function () {
      y que llame a la función pasada por parámetro con los siguientes parámetros
      dirección: la dirección pasada por parámetro
      coordenada: la ubicación de tipo google.maps.LatLng */
-  }
+     
+     geocodificador.geocode({'address': direccion}, function(results, status) {
+			if (status === 'OK') {
+        var resultadosBusqueda = results[0].geometry.location
+				funcionALlamar(direccion,resultadosBusqueda);
+					
+        
+          //ESTO ESTA EN LA FUNCION direccionesModulo.agregarDireccionYMostrarEnMapa de "direcciones.js"
+        /*resultados_lat = resultados.lat(),
+					resultados_long = resultados.lng();*/
+				/*map.setCenter(results[0].geometry.location);
+				var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+        });*/
+        
+			} else {
+				var mensajeError = "";
+				if (status === "ZERO_RESULTS") {
+					mensajeError = "No hubo resultados para la dirección ingresada.";
+				} else if (status === "OVER_QUERY_LIMIT" || status === "REQUEST_DENIED" || status === "UNKNOWN_ERROR") {
+					mensajeError = "Error general del mapa.";
+				} else if (status === "INVALID_REQUEST") {
+					mensajeError = "Error de la web. Contacte con Name Agency.";
+				}
+				alert(mensajeError);
+			}
+		});
+	}
+
 
     // Inicializo el geocoder que obtiene las corrdenadas a partir de una dirección
     // La variable dirección es igual al texto ingresado por el usuario
-    // Llama a la función usaDirecciin para agregarla a los listados y mostrarlo en el mapa
+    // Llama a la función usaDireccion para agregarla a los listados y mostrarlo en el mapa
   function inicializar () {
     var that = this
     geocodificador = new google.maps.Geocoder()
