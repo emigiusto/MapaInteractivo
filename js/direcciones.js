@@ -46,10 +46,7 @@ direccionesModulo = (function () {
     var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng()
     agregarDireccionEnLista(direccion, ubicacionTexto)
     mapa.setCenter(ubicacion)
-    console.log("ubicacion")
-    console.log(ubicacion)
-    console.log("direccion")
-    console.log(direccion)
+    
     streetViewModulo.fijarStreetView(ubicacion)
     marcadorModulo.mostrarMiMarcador(ubicacion)
   }

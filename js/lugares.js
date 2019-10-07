@@ -12,8 +12,8 @@ lugaresModulo = (function () {
 
     // Inicializo la variable servicioLugares y llamo a la función autocompletar
   function inicializar () {
-    servicioLugares = new google.maps.places.PlacesService(mapa)
-    autocompletar()
+    servicioLugares = new google.maps.places.PlacesService(mapa);
+    autocompletar();
   }
 
     // Busca lugares con el tipo especificado en el campo de TipoDeLugar
@@ -22,6 +22,16 @@ lugaresModulo = (function () {
         /* Completar la función buscarCerca  que realice la búsqueda de los lugares
     del tipo (tipodeLugar) y con el radio indicados en el HTML cerca del lugar
     pasado como parámetro y llame a la función marcarLugares. */
+      var tipodeLugar = document.getElementById('tipoDeLugar').value
+      var radio = document.getElementById('radioS').value
+      var request = {
+        location: posicion,
+        radius: radio,
+        type: [tipodeLugar]
+      };
+
+      servicioLugares.nearbySearch(request,
+        marcadorModulo.marcarLugares);
 
   }
   return {

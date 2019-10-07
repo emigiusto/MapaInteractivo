@@ -11,7 +11,7 @@ geocodificadorModulo = (function () {
      
      geocodificador.geocode({'address': direccion}, function(results, status) {
 			if (status === 'OK') {
-        var resultadosBusqueda = results[0].geometry.location
+        var resultadosBusqueda = results[0].geometry.location;
 				funcionALlamar(direccion,resultadosBusqueda);
 					
         

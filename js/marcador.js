@@ -11,6 +11,14 @@ marcadorModulo = (function () {
         en la posición pasada por parámetro y mostrarlo en el mapa.
         Este marcador debe tener un título, una animación.
         El marcador que vas a crear debe asignarse a la variable miMarcador */
+      	miMarcador = new google.maps.Marker({
+          map: mapa,
+          position: ubicacion,
+          draggable: true,
+          title: 'Destino',
+          label: "Destino2",
+          animation: google.maps.Animation.DROP
+        });
   }
 
     // Agrega la dirección del marcador en la lista de Lugares Intermedios
@@ -208,6 +216,9 @@ marcadorModulo = (function () {
     // Marca los lugares que están en el arreglo resultados y
     // extiende los límites del mapa teniendo en cuenta los nuevos lugares
   function marcarLugares (resultados, status) {
+    console.log("Status es "+ status);
+    console.log("results");
+    console.log(results);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < resultados.length; i++) {
         crearMarcador(resultados[i])
