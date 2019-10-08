@@ -26,13 +26,30 @@ lugaresModulo = (function () {
       var radio = document.getElementById('radioS').value
       var request = {
         location: posicion,
-        radius: radio,
-        type: [tipodeLugar]
+        radius: '500',
+        type: ['restaurant']
       };
+      servicioLugares.nearbySearch(
+        {location: posicion, radius: 500, type: ['store']},
+        function(results, status) {
+          if (status !== 'OK'){
+            console.log(status)
+          };
 
-      servicioLugares.nearbySearch(request,
-        marcadorModulo.marcarLugares);
+          marcadorModulo.marcarLugares(results);
 
+        });
+/*
+      servicioLugares.nearbySearch(request,function(results, status, pagination) {
+          if (status !== 'OK') return;
+          marcadorModulo.marcarLugares(results,status);
+
+          moreButton.disabled = !pagination.hasNextPage;
+          getNextPage = pagination.hasNextPage && function() {
+            pagination.nextPage();
+          };
+        });
+*/
   }
   return {
     inicializar,

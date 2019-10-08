@@ -219,6 +219,7 @@ marcadorModulo = (function () {
     console.log("Status es "+ status);
     console.log("results");
     console.log(results);
+    
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < resultados.length; i++) {
         crearMarcador(resultados[i])
