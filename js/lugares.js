@@ -22,23 +22,14 @@ lugaresModulo = (function () {
         /* Completar la función buscarCerca  que realice la búsqueda de los lugares
     del tipo (tipodeLugar) y con el radio indicados en el HTML cerca del lugar
     pasado como parámetro y llame a la función marcarLugares. */
-      var tipodeLugar = document.getElementById('tipoDeLugar').value
-      var radio = document.getElementById('radioS').value
-      var request = {
+      debugger
+      let request = {
         location: posicion,
-        radius: '500',
-        type: ['restaurant']
+        radius: parseInt($('#radioS').text()).toString(),
+        types: [ $('#tipoDeLugar')[0].value ]
       };
-      servicioLugares.nearbySearch(
-        {location: posicion, radius: 500, type: ['store']},
-        function(results, status) {
-          if (status !== 'OK'){
-            console.log(status)
-          };
 
-          marcadorModulo.marcarLugares(results);
-
-        });
+      servicioLugares.nearbySearch(request, marcadorModulo.marcarLugares);
 /*
       servicioLugares.nearbySearch(request,function(results, status, pagination) {
           if (status !== 'OK') return;
