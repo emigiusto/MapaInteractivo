@@ -5,6 +5,7 @@ lugaresModulo = (function () {
     // con un círculo cuyo radio es de 20000 metros.
   function autocompletar () {
     var input = document.getElementById('direccion');
+    var input2 = document.getElementById('agregar');
         /* Completar la función autocompletar(): autocompleta los 4 campos de texto de la
         página (las direcciones ingresables por el usuario).
         Para esto creá un círculo con radio de 20000 metros y usalo para fijar
@@ -20,6 +21,7 @@ lugaresModulo = (function () {
     
 
     var autocomplete = new google.maps.places.Autocomplete(input, options);
+    var autocomplete2 = new google.maps.places.Autocomplete(input2, options);
   }
 
     // Inicializo la variable servicioLugares y llamo a la función autocompletar

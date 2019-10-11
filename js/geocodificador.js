@@ -13,8 +13,6 @@ geocodificadorModulo = (function () {
 			if (status === 'OK') {
         var resultadosBusqueda = results[0].geometry.location;
 				funcionALlamar(direccion,resultadosBusqueda);
-					
-        
           //ESTO ESTA EN LA FUNCION direccionesModulo.agregarDireccionYMostrarEnMapa de "direcciones.js"
         /*resultados_lat = resultados.lat(),
 					resultados_long = resultados.lng();*/
@@ -31,7 +29,7 @@ geocodificadorModulo = (function () {
 				} else if (status === "OVER_QUERY_LIMIT" || status === "REQUEST_DENIED" || status === "UNKNOWN_ERROR") {
 					mensajeError = "Error general del mapa.";
 				} else if (status === "INVALID_REQUEST") {
-					mensajeError = "Error de la web. Contacte con Name Agency.";
+					mensajeError = "Error de la web. Contacte con Google Maps API support.";
 				}
 				alert(mensajeError);
 			}
@@ -46,17 +44,43 @@ geocodificadorModulo = (function () {
     var that = this
     geocodificador = new google.maps.Geocoder()
 
-        // cuando se presiona la tecla enter en el campo direccion, se agrega la dirección y se muestra en el mapa
-    document.querySelector('#direccion').addEventListener('keypress', function (e) {
+    //Cuando hay un cambio en el campo de #direccion lo busca
+
+      $('#direccion').autocomplete({
+        select: function(event,ui){
+            console.log(event)
+            console.log(ui)
+      }})
+
+  }
+  /*
+    $('#direccion').change(function(){
+      debugger
+        console.log("Hubo cambios en #direccion")
+        console.log("direccion")
+        var direccion2 = document.getElementById('direccion')
+        console.log(direccion2)
+        var direccion = document.getElementById('direccion').value
+        console.log(direccion)
+        that.usaDireccion(direccion, direccionesModulo.agregarDireccionYMostrarEnMapa)
+      })
+
+      $('#agregar').change(function(){
+        console.log("Hubo cambios en #agregar")
+        var direccion = document.getElementById('agregar').value
+        
+        that.usaDireccion(direccion, direccionesModulo.agregarDireccionYMostrarEnMapa)
+      })
+
+      // cuando se presiona la tecla enter en el campo direccion, se agrega la dirección y se muestra en el mapa
+    /*document.querySelector('#direccion').addEventListener('keypress', function (e) {
       var key = e.which || e.keyCode
       if (key === 13) { // 13 is enter
                 // code for enter
         var direccion = document.getElementById('direccion').value
         that.usaDireccion(direccion, direccionesModulo.agregarDireccionYMostrarEnMapa)
       }
-    })
-  }
-
+    })*/
   return {
     usaDireccion,
     inicializar

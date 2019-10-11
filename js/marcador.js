@@ -162,11 +162,12 @@ marcadorModulo = (function () {
     // cuando se hace clic en AgregarDirecciones
   function inicializar () {
         // Muestra marcador cuando se presioná enter en el campo direccion
-    $('#direccion').keypress(function (e) {
+    /*$('#direccion').keypress(function (e) {
       if (e.keyCode == 13) {
         marcadorModulo.mostrarMiMarcador()
       }
     })
+
     /*$('#direccion').change(function(){
       console.log("Hubo cambios")
         marcadorModulo.mostrarMiMarcador()

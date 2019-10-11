@@ -56,18 +56,17 @@ direccionesModulo = (function () {
     var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng()
     agregarDireccionEnLista(direccion, ubicacionTexto)
     mapa.setCenter(ubicacion)
+    mapa.panTo(miPosicion)
   }
 
     // Inicializo las variables que muestra el panel y el que calcula las rutas//
   function inicializar () {
     calcularRutasConClic()
         // Agrega la direccion cuando se presioná enter en el campo agregar
-    $('#agregar').keypress(function (e) {
-      if (e.keyCode == 13) {
+    $('#agregar').change(function (){
         var direccion = document.getElementById('agregar').value
         geocodificadorModulo.usaDireccion(direccion, direccionesModulo.agregarDireccion)
-      }
-    })
+    });
         // Calcula las rutas cuando se presioná enter en el campo desde y hay un valor disitnto a vacío en 'hasta'
     $('#desde').keypress(function (e) {
       if (e.keyCode == 13 && document.getElementById('hasta').value != '') {
