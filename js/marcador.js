@@ -16,7 +16,6 @@ marcadorModulo = (function () {
           position: ubicacion,
           draggable: true,
           title: 'Destino',
-          label: "Destino2",
           animation: google.maps.Animation.DROP
         });
   }
@@ -162,12 +161,17 @@ marcadorModulo = (function () {
     // Llamo a la funcion agregarMarcadoresClicCargarDirecciones() para que marque a los lugares
     // cuando se hace clic en AgregarDirecciones
   function inicializar () {
-        // Muestra marcador cuando se presioná enteren el campo direccion
+        // Muestra marcador cuando se presioná enter en el campo direccion
     $('#direccion').keypress(function (e) {
       if (e.keyCode == 13) {
         marcadorModulo.mostrarMiMarcador()
       }
     })
+    /*$('#direccion').change(function(){
+      console.log("Hubo cambios")
+        marcadorModulo.mostrarMiMarcador()
+      })
+      */
     infoVentana = new google.maps.InfoWindow()
     limites = new google.maps.LatLngBounds()
   }
@@ -215,12 +219,7 @@ marcadorModulo = (function () {
 
     // Marca los lugares que están en el arreglo resultados y
     // extiende los límites del mapa teniendo en cuenta los nuevos lugares
-  function marcarLugares (resultados, status) {
-    debugger
-    console.log("Status es "+ status);
-    console.log("results");
-    console.log(resultados);
-    
+  function marcarLugares (resultados, status) {   
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < resultados.length; i++) {
         crearMarcador(resultados[i])
