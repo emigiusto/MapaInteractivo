@@ -33,28 +33,28 @@ direccionesModulo = (function () {
       }
     }
     if (haceFaltaAgregar) {
-      var opt = document.createElement('option')
-      opt.value = coord
-      opt.innerHTML = direccion
-      lugaresIntermedios.appendChild(opt)
+      var opt = document.createElement('option');
+      opt.value = coord;
+      opt.innerHTML = direccion;
+      lugaresIntermedios.appendChild(opt);
     }
   }
 
     // Agrega la dirección en las listas de puntos intermedios y lo muestra con el street view
   function agregarDireccionYMostrarEnMapa (direccion, ubicacion) {
-    that = this
-    var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng()
-    agregarDireccionEnLista(direccion, ubicacionTexto)
-    mapa.setCenter(ubicacion)
-    streetViewModulo.fijarStreetView(ubicacion)
-    marcadorModulo.mostrarMiMarcador(ubicacion)
+    that = this;
+    var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng();
+    agregarDireccionEnLista(direccion, ubicacionTexto);
+    mapa.setCenter(ubicacion);
+    streetViewModulo.fijarStreetView(ubicacion);
+    marcadorModulo.mostrarMiMarcador(ubicacion);
   }
 
   function agregarDireccion (direccion, ubicacion) {
-    that = this
-    var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng()
-    agregarDireccionEnLista(direccion, ubicacionTexto)
-    mapa.setCenter(ubicacion)
+    that = this;
+    var ubicacionTexto = ubicacion.lat() + ',' + ubicacion.lng();
+    agregarDireccionEnLista(direccion, ubicacionTexto);
+    mapa.setCenter(ubicacion);
   }
 
     // Inicializo las variables que muestra el panel y el que calcula las rutas//
