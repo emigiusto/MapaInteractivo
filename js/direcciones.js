@@ -80,6 +80,7 @@ direccionesModulo = (function () {
         direccionesModulo.calcularYMostrarRutas()
       }
     })
+
     servicioDirecciones = new google.maps.DirectionsService()
     mostradorDirecciones = new google.maps.DirectionsRenderer({
       draggable: true,
@@ -93,9 +94,24 @@ direccionesModulo = (function () {
     // dependiendo de la formaDeIr que puede ser Caminando, Auto o Bus/Subterraneo/Tren
   function calcularYMostrarRutas () {
 
+    var start = document.getElementById('desde').value;
+    var end = document.getElementById('hasta').value;
+    var modoViaje = $("#comoIr").val();
         /* Completar la función calcularYMostrarRutas , que dependiendo de la forma en que el
          usuario quiere ir de un camino al otro, calcula la ruta entre esas dos posiciones
          y luego muestra la ruta. */
+      var DirectionsRequest = {
+        origin: start,
+        destination: end,
+        travelMode: modoViaje,
+        optimizeWaypoints: true
+        };
+
+    servicioDirecciones.route(DirectionsRequest,function(result, status) {
+        if (status == 'OK') {
+          mostradorDirecciones.setDirections(result);
+        }
+      });
   }
 
   return {

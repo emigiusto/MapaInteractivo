@@ -13,7 +13,7 @@ geocodificadorModulo = (function () {
 			if (status === 'OK') {
         var resultadosBusqueda = results[0].geometry.location;
 				funcionALlamar(direccion,resultadosBusqueda);
-					
+				
         
           //ESTO ESTA EN LA FUNCION direccionesModulo.agregarDireccionYMostrarEnMapa de "direcciones.js"
         /*resultados_lat = resultados.lat(),
