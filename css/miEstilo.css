@@ -51,6 +51,7 @@ output {
     border: solid 1px #4b858a;
     color: #4b858a;
     background: transparent;
+    margin-top:2%;
 }
 
 .btn-outline:hover {

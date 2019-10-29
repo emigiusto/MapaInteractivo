@@ -12,6 +12,10 @@ direccionesModulo = (function () {
       direccionesModulo.calcularYMostrarRutas()
     })
 
+    document.getElementById('borrarIntermedios').addEventListener('click', function () {
+      direccionesModulo.borrarIntermedios();
+    })
+
     var listasLugares = document.getElementsByClassName('lugares')
     for (var j = 0; j < listasLugares.length; j++) {
       listasLugares[j].addEventListener('change', function () {
@@ -97,13 +101,24 @@ direccionesModulo = (function () {
     var start = document.getElementById('desde').value;
     var end = document.getElementById('hasta').value;
     var modoViaje = $("#comoIr").val();
-        /* Completar la función calcularYMostrarRutas , que dependiendo de la forma en que el
-         usuario quiere ir de un camino al otro, calcula la ruta entre esas dos posiciones
-         y luego muestra la ruta. */
+      
+    /* Leo los waypoints!  */
+      var waypts = [];
+      var checkboxArray = document.getElementById('puntosIntermedios');
+      for (var i = 0; i < checkboxArray.length; i++) {
+        if (checkboxArray.options[i].selected) {
+          waypts.push({
+            location: checkboxArray[i].value,
+            stopover: true
+          });
+        }
+      }
+      /* Creo el request completo */
       var DirectionsRequest = {
         origin: start,
         destination: end,
         travelMode: modoViaje,
+        waypoints: waypts,
         optimizeWaypoints: true
         };
 
@@ -114,11 +129,16 @@ direccionesModulo = (function () {
       });
   }
 
+  function borrarIntermedios(){
+    $("#puntosIntermedios").html("");
+  }
+
   return {
     inicializar,
     agregarDireccion,
     agregarDireccionEnLista,
     agregarDireccionYMostrarEnMapa,
-    calcularYMostrarRutas
+    calcularYMostrarRutas,
+    borrarIntermedios
   }
 }())
