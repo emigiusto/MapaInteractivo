@@ -9,21 +9,23 @@ direccionesModulo = (function () {
     })
 
     document.getElementById('calcularMuchos').addEventListener('click', function () {
-      direccionesModulo.calcularYMostrarRutas()
+      if (document.getElementById('desde').value != '' && document.getElementById('desde').value != '') {
+        direccionesModulo.calcularYMostrarRutas()
+      }
     })
 
     document.getElementById('borrarIntermedios').addEventListener('click', function () {
       direccionesModulo.borrarIntermedios();
     })
 
-    var listasLugares = document.getElementsByClassName('lugares')
+    /*var listasLugares = document.getElementsByClassName('lugares')
     for (var j = 0; j < listasLugares.length; j++) {
       listasLugares[j].addEventListener('change', function () {
         if (document.getElementById('desde').value != '' && document.getElementById('desde').value != '') {
           direccionesModulo.calcularYMostrarRutas()
         }
       })
-    }
+    }*/
   }
 
     // Agrega la dirección en las lista de Lugares Intermedios en caso de que no estén
@@ -100,6 +102,10 @@ direccionesModulo = (function () {
 
     var start = document.getElementById('desde').value;
     var end = document.getElementById('hasta').value;
+    //creo los marcadores
+      marcadorModulo.agregarMarcadorRuta(start,"A",true)
+      marcadorModulo.agregarMarcadorRuta(end,"B",false)
+    //Cargo modo de viaje
     var modoViaje = $("#comoIr").val();
       
     /* Leo los waypoints!  */
@@ -111,6 +117,7 @@ direccionesModulo = (function () {
             location: checkboxArray[i].value,
             stopover: true
           });
+          marcadorModulo.agregarMarcadorRuta(checkboxArray[i].value,"I",false)
         }
       }
       /* Creo el request completo */
